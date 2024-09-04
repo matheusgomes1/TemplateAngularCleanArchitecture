@@ -1,4 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.core();
+
+$my-theme: mat.define-theme((
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+      ),
+      typography: (
+        brand-family: 'Comic Sans',
+        bold-weight: 900
+      ),
+      density: (scale: -1)));
+
+@mixin theme($my-theme) {
+  mat-toolbar {
+    background: mat.get-theme-color($my-theme, primary-container) !important;
+  }
+}
+
+html,
+body {
+  @include mat.all-component-themes($my-theme);
+  @include theme($my-theme);
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/grid";
+@import "bootstrap/dist/css/bootstrap-utilities.css";
