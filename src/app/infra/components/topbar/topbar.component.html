@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="matDrawer.toggle()" class="example-icon"
+    aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="d-flex flex-grow-1 justify-content-center">
+    Template app
+  </div>
+  <div class="d-flex justify-content-end">
+    <button mat-icon-button aria-label="Icone account">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<mat-progress-bar mode="query" *ngIf="loadingController.loadingFlag()"></mat-progress-bar>
