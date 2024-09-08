@@ -4,7 +4,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MenuComponent } from "./menu/menu.component";
+import { MenuComponent } from "./infra/components/menu/menu.component";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TopbarComponent } from './infra/components/topbar/topbar.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,9 @@ import { MenuComponent } from "./menu/menu.component";
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MenuComponent
+    MenuComponent,
+    MatProgressBarModule,
+    TopbarComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

@@ -4,6 +4,8 @@ import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { LoadingControllerService } from '../../../infra/services/loading-controller.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listagem-produto',
@@ -14,10 +16,17 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ListagemProdutoComponent implements OnInit {
   produtos: Produto[];
-
   displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao'];
 
+  constructor(private loadingController: LoadingControllerService, private router: Router) {
+    
+  }
+
   ngOnInit(): void {
+    this.loadingController.setLoading(true);
+    setTimeout(() => {
+      this.loadingController.setLoading(false);
+    }, 3000);
     this.produtos = [
       {
         nome: 'Produto 1',
@@ -50,5 +59,9 @@ export class ListagemProdutoComponent implements OnInit {
         dataInclusao: '2024-10-30'
       }
     ]
+  }
+
+  cadastrar() {
+    this.router.navigate(['produto/cadastro']);
   }
 }

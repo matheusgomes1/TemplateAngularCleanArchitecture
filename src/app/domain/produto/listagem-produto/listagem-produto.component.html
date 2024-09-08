@@ -1,11 +1,13 @@
 <div class="d-flex justify-content-end mb-2">
-  <button class="px-3 d-none d-sm-flex" mat-fab extended>
+  <button mat-raised-button class="px-3 d-none d-sm-flex" (click)="cadastrar()">
     <mat-icon>add</mat-icon>
     Cadastrar
   </button>
 </div>
 
-<button class="fab_cadastrar_mb d-flex d-sm-none" mat-fab aria-label="Example icon button with a delete icon">
+<button class="fab_cadastrar_mb d-flex d-sm-none" mat-fab 
+  (click)="cadastrar()"
+  aria-label="Example icon button with a delete icon">
   <mat-icon>add</mat-icon>
 </button>
 
