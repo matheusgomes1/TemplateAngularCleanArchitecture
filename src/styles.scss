@@ -18,6 +18,12 @@ $my-theme: mat.define-theme((
   mat-toolbar {
     background: mat.get-theme-color($my-theme, primary-container) !important;
   }
+
+  .secondy-row-color {
+    height: 40px !important;
+    width: 100% !important;
+    background-color: mat.get-theme-color($my-theme, primary, 95) !important;
+  }  
 }
 
 html,

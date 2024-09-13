@@ -6,6 +6,9 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoadingControllerService } from '../../services/loading-controller.service';
 import { CommonModule } from '@angular/common';
+import { TopbarService } from '../../services/topbar.service';
+import { MatChipsModule } from '@angular/material/chips';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -15,7 +18,9 @@ import { CommonModule } from '@angular/common';
     MatToolbarModule, 
     MatIconModule, 
     MatProgressBarModule,
-    CommonModule 
+    CommonModule,
+    MatChipsModule,
+    RouterModule
   ],
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss'
@@ -23,9 +28,8 @@ import { CommonModule } from '@angular/common';
 export class TopbarComponent {
   @Input() matDrawer: MatDrawer;
 
-  /**
-   *
-   */
-  constructor(public loadingController: LoadingControllerService) {    
+  constructor(public loadingController: LoadingControllerService,
+    public topbarService: TopbarService
+  ) {    
   }
 }

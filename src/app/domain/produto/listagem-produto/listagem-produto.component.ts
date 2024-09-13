@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LoadingControllerService } from '../../../infra/services/loading-controller.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { TopbarService } from '../../../infra/services/topbar.service';
 
 @Component({
   selector: 'app-listagem-produto',
@@ -18,15 +20,27 @@ export class ListagemProdutoComponent implements OnInit {
   produtos: Produto[];
   displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao'];
 
-  constructor(private loadingController: LoadingControllerService, private router: Router) {
+  constructor(private loadingController: LoadingControllerService, 
+    private router: Router, 
+    private httpClient: HttpClient,
+    private topbarService: TopbarService
+  ) {
     
   }
 
   ngOnInit(): void {
-    this.loadingController.setLoading(true);
-    setTimeout(() => {
-      this.loadingController.setLoading(false);
-    }, 3000);
+    this.topbarService.setBackRoute(null);
+
+    // this.httpClient.get('https://jsonplaceholder.typicode.com/comments').subscribe((v) => {
+    //   console.log(v);
+    // })
+
+    // this.httpClient.get('https://jsonplaceholder.typicode.com/photos').subscribe((v) => {
+    //   console.log(v);
+    // })
+
+    this.httpClient.get('https://dummyapis.com/dummy/delay-response?queryParameters=seconds%3D1').subscribe();
+
     this.produtos = [
       {
         nome: 'Produto 1',
