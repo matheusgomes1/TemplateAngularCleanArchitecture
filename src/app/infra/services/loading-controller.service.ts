@@ -4,9 +4,19 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
   providedIn: 'root'
 })
 export class LoadingControllerService {
-  public loadingFlag: WritableSignal<boolean> = signal(false);
+  public loadingFlag: WritableSignal<number> = signal(0);
 
   constructor() { }
 
-  public setLoading = (loading: boolean) => this.loadingFlag.set(loading);
+  public addLoader() {
+    const value = this.loadingFlag()
+    this.loadingFlag.set(value + 1);
+  }
+
+  public removeLoader() {
+    const value = this.loadingFlag();
+
+    if (value > 0)
+      this.loadingFlag.set(value - 1);
+  }
 }

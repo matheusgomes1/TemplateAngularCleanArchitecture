@@ -6,12 +6,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { TopbarService } from '../../../infra/services/topbar.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-cadastro-produto',
   standalone: true,
   providers: [provideNativeDateAdapter()],
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatDatepickerModule],
+  imports: [ReactiveFormsModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatIconModule, 
+    MatDatepickerModule, 
+    MatButtonModule, 
+    MatIconModule,
+    MatCardModule],
   templateUrl: './cadastro-produto.component.html',
   styleUrl: './cadastro-produto.component.scss'
 })
@@ -34,5 +43,9 @@ export class CadastroProdutoComponent implements OnInit {
     this.form.valueChanges.subscribe((v) => {
       console.log(v);
     })
+  }
+
+  salvar() {
+    console.log("salvar");
   }
 }

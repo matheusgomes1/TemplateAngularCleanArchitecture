@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { TopbarService } from '../../services/topbar.service';
 import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-topbar',
@@ -27,6 +28,8 @@ import { RouterModule } from '@angular/router';
 })
 export class TopbarComponent {
   @Input() matDrawer: MatDrawer;
+
+  envName = environment.environment;
 
   constructor(public loadingController: LoadingControllerService,
     public topbarService: TopbarService

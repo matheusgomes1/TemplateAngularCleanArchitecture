@@ -31,13 +31,13 @@ export class ListagemProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.setBackRoute(null);
 
-    // this.httpClient.get('https://jsonplaceholder.typicode.com/comments').subscribe((v) => {
-    //   console.log(v);
-    // })
+    this.httpClient.get('https://jsonplaceholder.typicode.com/comments').subscribe((v) => {
+      console.log(v);
+    })
 
-    // this.httpClient.get('https://jsonplaceholder.typicode.com/photos').subscribe((v) => {
-    //   console.log(v);
-    // })
+    this.httpClient.get('https://jsonplaceholder.typicode.com/photos').subscribe((v) => {
+      console.log(v);
+    })
 
     this.httpClient.get('https://dummyapis.com/dummy/delay-response?queryParameters=seconds%3D1').subscribe();
 

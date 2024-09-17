@@ -5,8 +5,8 @@ import { LoadingControllerService } from "../services/loading-controller.service
 
 export function progressBarInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const loadingController = inject(LoadingControllerService);
-  loadingController.setLoading(true);
+  loadingController.addLoader();
   return next(req).pipe(finalize(() => {
-    loadingController.setLoading(false);
+    loadingController.removeLoader();
   }));
 }
