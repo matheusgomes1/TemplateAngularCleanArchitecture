@@ -1,11 +1,12 @@
-import { CaracteristicaProduto } from "./caracteristica-produto.model";
+import { Comentario } from "./comentario.model";
 import { FotoProduto } from "./foto-produto.model";
 
 export class Produto {
+    id: number;
     nome: string;
     descricao: string;
     fotos?: FotoProduto[];
     valor: number;
     dataInclusao: string;
-    caracteristicas?: CaracteristicaProduto[];
+    comentarios: Comentario[];
 }

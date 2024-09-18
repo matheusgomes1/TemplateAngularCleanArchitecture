@@ -5,13 +5,12 @@
   </button>
 </div>
 
-<button class="fab_cadastrar_mb d-flex d-sm-none" mat-fab 
-  (click)="cadastrar()"
+<button class="fab_cadastrar_mb d-flex d-sm-none" mat-fab (click)="cadastrar()"
   aria-label="Example icon button with a delete icon">
   <mat-icon>add</mat-icon>
 </button>
 
-<table mat-table [dataSource]="produtos" class="mat-elevation-z8">
+<table  class="mat-elevation-z8" mat-table [dataSource]="produtos">
 
   <ng-container matColumnDef="nome">
     <th mat-header-cell *matHeaderCellDef> Nome </th>
@@ -36,3 +35,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<mat-paginator class="mat-elevation-z3" #paginator (page)="alterarPagina($event)" [length]="itemsCount" [pageSize]="pageSize"
+  [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" aria-label="Select page">
+</mat-paginator>

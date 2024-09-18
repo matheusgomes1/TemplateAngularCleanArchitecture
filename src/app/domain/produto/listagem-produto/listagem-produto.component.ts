@@ -8,21 +8,28 @@ import { LoadingControllerService } from '../../../infra/services/loading-contro
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { TopbarService } from '../../../infra/services/topbar.service';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { ProdutoService } from '../services/produto.service';
 
 @Component({
   selector: 'app-listagem-produto',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, DatePipe],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, DatePipe, MatPaginatorModule],
+  providers: [ProdutoService],
   templateUrl: './listagem-produto.component.html',
   styleUrl: './listagem-produto.component.scss'
 })
 export class ListagemProdutoComponent implements OnInit {
   produtos: Produto[];
   displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao'];
+  pageSize: number = 5;
+  itemsCount: number;
+  pageSizeOptions = [5, 10, 25];
+  pageIndex: number = 0;
 
   constructor(private loadingController: LoadingControllerService, 
     private router: Router, 
-    private httpClient: HttpClient,
+    private produtoService: ProdutoService,
     private topbarService: TopbarService
   ) {
     
@@ -31,51 +38,22 @@ export class ListagemProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.setBackRoute(null);
 
-    this.httpClient.get('https://jsonplaceholder.typicode.com/comments').subscribe((v) => {
-      console.log(v);
+    this.produtoService.getProdutos(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
+      this.produtos = resp.data;
+      this.itemsCount = resp.items;
     })
-
-    this.httpClient.get('https://jsonplaceholder.typicode.com/photos').subscribe((v) => {
-      console.log(v);
-    })
-
-    this.httpClient.get('https://dummyapis.com/dummy/delay-response?queryParameters=seconds%3D1').subscribe();
-
-    this.produtos = [
-      {
-        nome: 'Produto 1',
-        descricao: 'Descricao produto 1',
-        valor: 100.98,
-        dataInclusao: '2024-10-30'
-      },
-      {
-        nome: 'Produto 2',
-        descricao: 'Descricao produto 2',
-        valor: 50,
-        dataInclusao: '2024-10-30'
-      },
-      {
-        nome: 'Produto 3',
-        descricao: 'Descricao produto 3',
-        valor: 12.50,
-        dataInclusao: '2024-10-30'
-      },
-      {
-        nome: 'Produto 4',
-        descricao: 'Descricao produto 4',
-        valor: 100.98,
-        dataInclusao: '2024-10-30'
-      },
-      {
-        nome: 'Produto 5',
-        descricao: 'Descricao produto 5',
-        valor: 100.98,
-        dataInclusao: '2024-10-30'
-      }
-    ]
   }
 
   cadastrar() {
     this.router.navigate(['produto/cadastro']);
+  }
+
+  alterarPagina(pageEvent: PageEvent) {
+    this.pageIndex = pageEvent.pageIndex;
+    this.pageSize = pageEvent.pageSize;
+
+    this.produtoService.getProdutos(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
+      this.produtos = resp.data;
+    });
   }
 }
