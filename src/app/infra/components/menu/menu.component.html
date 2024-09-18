@@ -8,16 +8,16 @@
 		</mat-expansion-panel-header>
 
 		<mat-list>			
-			<mat-list-item>
+			<button mat-button matListItem (click)="redirecionar('produto/listagem')">
 				<!-- FROM: https://fonts.google.com/icons -->
-				<mat-icon matListItemIcon>home</mat-icon>
-				<div matListItemTitle>Item 1</div>
-			</mat-list-item>
+				<mat-icon matListItemIcon>category</mat-icon>
+				<div matListItemTitle>Produtos</div>
+			</button>
 			<mat-divider></mat-divider>
-			<mat-list-item>
-				<mat-icon matListItemIcon>face</mat-icon>
+			<button mat-button matListItem>
+				<mat-icon matListItemIcon>query_stats</mat-icon>
 				<div matListItemTitle>Item 2</div>
-			</mat-list-item>
+			</button>
 		</mat-list>
 
 	</mat-expansion-panel>
@@ -31,16 +31,16 @@
 		</mat-expansion-panel-header>
 
 		<mat-list>			
-			<mat-list-item>
+			<button mat-button matListItem>
 				<!-- FROM: https://fonts.google.com/icons -->
 				<mat-icon matListItemIcon>home</mat-icon>
 				<div matListItemTitle>Item 1</div>
-			</mat-list-item>
+			</button>
 			<mat-divider></mat-divider>
-			<mat-list-item>
+			<button mat-button matListItem>
 				<mat-icon matListItemIcon>face</mat-icon>
 				<div matListItemTitle>Item 2</div>
-			</mat-list-item>
+			</button>
 		</mat-list>
 
 	</mat-expansion-panel>

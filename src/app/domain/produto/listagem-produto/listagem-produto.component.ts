@@ -10,18 +10,19 @@ import { HttpClient } from '@angular/common/http';
 import { TopbarService } from '../../../infra/services/topbar.service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ProdutoService } from '../services/produto.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-listagem-produto',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, DatePipe, MatPaginatorModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, DatePipe, MatPaginatorModule, MatMenuModule],
   providers: [ProdutoService],
   templateUrl: './listagem-produto.component.html',
   styleUrl: './listagem-produto.component.scss'
 })
 export class ListagemProdutoComponent implements OnInit {
   produtos: Produto[];
-  displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao'];
+  displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao', 'acoes'];
   pageSize: number = 5;
   itemsCount: number;
   pageSizeOptions = [5, 10, 25];
@@ -55,5 +56,17 @@ export class ListagemProdutoComponent implements OnInit {
     this.produtoService.getProdutos(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
       this.produtos = resp.data;
     });
+  }
+
+  editar(e: any) {
+    console.log(e);
+  }
+
+  detalhar(e: any) {
+    console.log(e);
+  }
+
+  deletar(e: any) {
+    console.log(e);
   }
 }

@@ -1,5 +1,10 @@
-
 .mat-accordion .mat-expansion-panel:first-of-type {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.mat-mdc-button {
+  width: 100%;
+  justify-content: start;
+  border-radius: 5px 5px 0px 0px;
 }
