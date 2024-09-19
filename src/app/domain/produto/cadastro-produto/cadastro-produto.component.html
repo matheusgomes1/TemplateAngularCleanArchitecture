@@ -34,7 +34,7 @@
       </div>
     
       <div class="d-flex justify-content-end">
-        <button mat-fab extended type="submit">
+        <button mat-fab extended type="submit" [disabled]="!form.valid">
           <mat-icon>add</mat-icon>
           Salvar
         </button>

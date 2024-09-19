@@ -10,6 +10,10 @@
     color: #8f0303;
     border-top: 2px solid;
   }
+
+  mat-icon {
+    color: #8f0303;
+  }
 }
 
 .warning-snackbar {
@@ -19,6 +23,10 @@
   hr {
     color: #e7b803;
     border-top: 2px solid;
+  }
+
+  mat-icon {
+    color: #e7b803;
   }
 }
 
@@ -30,6 +38,10 @@
     color: #1e00ff;
     border-top: 2px solid;
   }
+
+  mat-icon {
+    color: #1e00ff;
+  }
 }
 
 .success-snackbar {
@@ -39,5 +51,9 @@
   hr {
     color: #01853c;
     border-top: 2px solid;
+  }
+
+  mat-icon {
+    color: #01853c;
   }
 }

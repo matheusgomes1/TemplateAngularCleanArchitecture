@@ -41,12 +41,10 @@ export class ListagemProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.setBackRoute(null);
 
-    this.produtoService.getProdutos(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
+    this.produtoService.get(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
       this.produtos = resp.data;
       this.itemsCount = resp.items;
     });
-
-    this.notificationService.showWarning('Exemplo notificação!', '<p>Apenas uma <b>notificação</b> de exemplo.</p>', 5000);
   }
 
   cadastrar() {
@@ -57,7 +55,7 @@ export class ListagemProdutoComponent implements OnInit {
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
 
-    this.produtoService.getProdutos(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
+    this.produtoService.get(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
       this.produtos = resp.data;
     });
   }

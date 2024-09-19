@@ -8,17 +8,20 @@ import { MatInputModule } from '@angular/material/input';
 import { TopbarService } from '../../../infra/services/topbar.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { NotificationService } from '../../../infra/services/notification.service';
+import { ProdutoService } from '../services/produto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-produto',
   standalone: true,
-  providers: [provideNativeDateAdapter()],
-  imports: [ReactiveFormsModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatIconModule, 
-    MatDatepickerModule, 
-    MatButtonModule, 
+  providers: [provideNativeDateAdapter(), ProdutoService],
+  imports: [ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatButtonModule,
     MatIconModule,
     MatCardModule],
   templateUrl: './cadastro-produto.component.html',
@@ -27,7 +30,11 @@ import { MatCardModule } from '@angular/material/card';
 export class CadastroProdutoComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private topbarService: TopbarService) {
+  constructor(private topbarService: TopbarService,
+    private notificationService: NotificationService,
+    private produtoService: ProdutoService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -37,15 +44,19 @@ export class CadastroProdutoComponent implements OnInit {
       nome: new FormControl<string | null>(null, [Validators.required]),
       descricao: new FormControl<string | null>(null, [Validators.required]),
       valor: new FormControl<number | null>(null, [Validators.required]),
-      dataInclusao: new FormControl<string | null>(null, [Validators.required])
+      dataInclusao: new FormControl<Date | null>(null, [Validators.required])
     });
-
-    this.form.valueChanges.subscribe((v) => {
-      console.log(v);
-    })
   }
 
   salvar() {
-    console.log("salvar");
+    if (!this.form.valid)
+      return;
+
+    this.produtoService.post(this.form.value).subscribe(
+      (produto) => { 
+        this.notificationService.showSuccess('Produto cadastrado!', `Produto ${produto.id} - ${produto.nome}`); 
+        this.router.navigate(['produto/listagem']);
+      }
+    );
   }
 }

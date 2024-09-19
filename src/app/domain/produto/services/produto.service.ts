@@ -12,7 +12,11 @@ export class ProdutoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getProdutos(page:number, perPage: number): Observable<ListResponse<Produto>> {
+  public get(page:number, perPage: number): Observable<ListResponse<Produto>> {
     return this.httpClient.get<ListResponse<Produto>>(`${this.API_URL}${this.ENDPOINT}?_page=${page}&_per_page=${perPage}`);
+  }
+
+  public post(produto: Produto): Observable<Produto> {
+    return this.httpClient.post<Produto>(`${this.API_URL}${this.ENDPOINT}`, produto);
   }
 }

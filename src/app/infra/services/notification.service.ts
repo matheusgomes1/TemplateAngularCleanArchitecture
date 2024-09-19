@@ -28,7 +28,7 @@ export class NotificationService {
 
   showError(title: string, message: string, duration: number = 5000) {
     this.snackBar.openFromComponent(CustomSnackBarComponent, {
-      data: { title, message },
+      data: { title, message, icon: 'error' },
       duration: duration,
       horizontalPosition: 'right',
       verticalPosition: 'top',
@@ -38,7 +38,7 @@ export class NotificationService {
 
   showInfo(title: string, message: string, duration: number = 5000) {
     this.snackBar.openFromComponent(CustomSnackBarComponent, {
-      data: { title, message },
+      data: { title, message, icon: 'info' },
       duration: duration,
       horizontalPosition: 'right',
       verticalPosition: 'top',
@@ -48,7 +48,7 @@ export class NotificationService {
 
   showWarning(title: string, message: string, duration: number = 5000) {
     this.snackBar.openFromComponent(CustomSnackBarComponent, {
-      data: { title, message },
+      data: { title, message, icon: 'warning' },
       duration: duration,
       horizontalPosition: 'right',
       verticalPosition: 'top',
@@ -58,7 +58,7 @@ export class NotificationService {
 
   showSuccess(title: string, message: string, duration: number = 5000) {
     this.snackBar.openFromComponent(CustomSnackBarComponent, {
-      data: { title, message },
+      data: { title, message, icon: 'done_outline' },
       duration: duration,
       horizontalPosition: 'right',
       verticalPosition: 'top',
