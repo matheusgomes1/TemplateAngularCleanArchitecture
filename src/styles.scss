@@ -36,6 +36,9 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  --mdc-snackbar-container-color: none; /* Resets to default */
+  --mdc-snackbar-supporting-text-color: none;
 }
 
 .date-picker-custom {
@@ -44,3 +47,4 @@ body {
 
 @import "bootstrap/scss/bootstrap";
 @import "../src/app/infra/styles/mat-paginador-custom";
+@import "../src/app/infra/styles/snack-bar-custom";

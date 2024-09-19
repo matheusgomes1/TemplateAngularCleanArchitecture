@@ -1,27 +1,26 @@
-# TemplateAngularCleanArchitecture
+# Aplicação Template Angular com Angular Material
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+Este projeto consiste em uma aplicação de exemplo, utilizando bons padrões de desenvolvimento e o que existe de mais novo com relação ao Angular 18. Algumas características são:
 
-## Development server
+* Standalone Components (The Angular team recommends using standalone components for all new development.)
+* Signals
+* Reactive Forms
+* Angular Material
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Fake Backend com json-server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Como o propósito do projeto é apenas um template, utiliza-se o json-server para simular o backend para que possamos utilizar as chamadas http.
 
-## Build
+### Configurando o serviço json-server
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```shell
+# Instale globalmente o json-server
+npm install -g json-server
+```
 
-## Running unit tests
+Na raíz do projeto existe o arquivo db.json que contém o "banco de dados", para subir o servidor basta executar:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```shell
+npx json-server db.json
+```

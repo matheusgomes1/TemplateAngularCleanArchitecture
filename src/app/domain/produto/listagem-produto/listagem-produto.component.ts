@@ -11,6 +11,7 @@ import { TopbarService } from '../../../infra/services/topbar.service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ProdutoService } from '../services/produto.service';
 import { MatMenuModule } from '@angular/material/menu';
+import { NotificationService } from '../../../infra/services/notification.service';
 
 @Component({
   selector: 'app-listagem-produto',
@@ -31,7 +32,8 @@ export class ListagemProdutoComponent implements OnInit {
   constructor(private loadingController: LoadingControllerService, 
     private router: Router, 
     private produtoService: ProdutoService,
-    private topbarService: TopbarService
+    private topbarService: TopbarService,
+    private notificationService: NotificationService
   ) {
     
   }
@@ -42,7 +44,9 @@ export class ListagemProdutoComponent implements OnInit {
     this.produtoService.getProdutos(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
       this.produtos = resp.data;
       this.itemsCount = resp.items;
-    })
+    });
+
+    this.notificationService.showWarning('Exemplo notificação!', '<p>Apenas uma <b>notificação</b> de exemplo.</p>', 5000);
   }
 
   cadastrar() {
