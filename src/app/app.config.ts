@@ -11,7 +11,6 @@ import { progressBarInterceptor } from './infra/interceptors/progress-bar.interc
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes), 
     provideAnimationsAsync(),
@@ -20,16 +19,16 @@ export const appConfig: ApplicationConfig = {
     ),
     provideMomentDateAdapter({
         parse: {
-          dateInput: ['DD MM YYYY'],
+          dateInput: ['DD/MM/YYYY', 'DDMMYYYY'],
         },
         display: {
-          dateInput: 'DD MM YYYY',
+          dateInput: 'DD/MM/YYYY',
           monthYearLabel: 'MMM YYYY',
-          dateA11yLabel: 'DD MM YYYY',
+          dateA11yLabel: 'DD/MM/YYYY',
           monthYearA11yLabel: 'MMMM YYYY',
         },
       }, 
-      {useUtc: true}
+      {useUtc: true, strict: true},
     )
   ]
 };

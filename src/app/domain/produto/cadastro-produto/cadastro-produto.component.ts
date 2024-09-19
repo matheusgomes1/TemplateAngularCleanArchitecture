@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-cadastro-produto',
   standalone: true,
-  providers: [provideNativeDateAdapter(), ProdutoService],
+  providers: [ProdutoService],
   imports: [ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
