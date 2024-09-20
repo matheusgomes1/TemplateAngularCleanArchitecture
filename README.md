@@ -1,4 +1,4 @@
-# Aplicação Template Angular com Angular Material
+# Aplicação Template com Angular Material
 
 Este projeto consiste em uma aplicação de exemplo, utilizando bons padrões de desenvolvimento e o que existe de mais novo com relação ao Angular 18. Algumas características são:
 
