@@ -19,8 +19,12 @@ $my-theme: mat.define-theme((
     background: mat.get-theme-color($my-theme, primary-container) !important;
   }
 
+  .dialog-title {
+    border-bottom: mat.get-theme-color($my-theme, primary-container) solid 2px;
+  }
+
   .secondy-row-color {
-    height: 40px !important;
+    min-height: 40px !important;
     width: 100% !important;
     background-color: mat.get-theme-color($my-theme, primary, 95) !important;
   }  
@@ -39,6 +43,8 @@ body {
 
   --mdc-snackbar-container-color: none; /* Resets to default */
   --mdc-snackbar-supporting-text-color: none;
+  --mat-form-field-container-vertical-padding: 10px;
+  --mat-form-field-container-height: 44px;
 }
 
 .date-picker-custom {

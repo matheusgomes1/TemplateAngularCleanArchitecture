@@ -19,4 +19,8 @@ export class ProdutoService {
   public post(produto: Produto): Observable<Produto> {
     return this.httpClient.post<Produto>(`${this.API_URL}${this.ENDPOINT}`, produto);
   }
+
+  public delete(id: string) {
+    return this.httpClient.delete<Produto>(`${this.API_URL}${this.ENDPOINT}/${id}`);
+  }
 }
