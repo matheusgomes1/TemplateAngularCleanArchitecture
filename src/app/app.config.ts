@@ -4,10 +4,10 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './infra/interceptors/auth.interceptor';
 import { progressBarInterceptor } from './infra/interceptors/progress-bar.interceptor';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,6 +29,7 @@ export const appConfig: ApplicationConfig = {
         },
       }, 
       {useUtc: true, strict: true},
-    )
+    ),
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
   ]
 };

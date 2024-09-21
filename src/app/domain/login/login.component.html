@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center layout-login">
+  <mat-card appearance="outlined">
+    <mat-card-header class="justify-content-center">
+      <div mat-card-avatar>
+        <svg _ngcontent-ng-c1910891413="" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 960 960">
+          <polygon _ngcontent-ng-c1910891413="" points="562.6,109.8 804.1,629.5 829.2,233.1"></polygon>
+          <polygon _ngcontent-ng-c1910891413="" points="624.9,655.9 334.3,655.9 297.2,745.8 479.6,849.8 662,745.8">
+          </polygon>
+          <polygon _ngcontent-ng-c1910891413="" points="384.1,539.3 575.2,539.3 479.6,307"></polygon>
+          <polygon _ngcontent-ng-c1910891413="" points="396.6,109.8 130,233.1 155.1,629.5"></polygon>
+        </svg>
+      </div>
+      <mat-card-title>App Template</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div class="d-flex flex-column align-items-center">
+          <mat-form-field>
+            <mat-label>Usuário</mat-label>
+            <input matInput formControlName="usuario">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="senha" [type]="hide() ? 'password' : 'text'" />
+            <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide()">
+              <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <div class="d-flex flex-column button-group">
+            <button mat-raised-button color="primary" (click)="login()">
+              <mat-icon>login</mat-icon>
+              Acessar
+            </button>
+
+            <button mat-button color="warn">
+              <mat-icon>help_outline</mat-icon>
+              Esqueci minha senha
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

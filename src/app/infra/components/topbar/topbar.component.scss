@@ -1,9 +1,20 @@
 .progress-bar-custom {
   position: fixed;
-  top: 60px;
+  top: 0px;
   z-index: 2;
 }
 
 mat-chip-set {
   margin-top: 2px;
+}
+
+.profile-button {
+  height: 40px;
+  width: 40px;
+  padding: 0px;
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
 }

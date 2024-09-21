@@ -10,6 +10,7 @@ import { TopbarService } from '../../services/topbar.service';
 import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { LoginService } from '../../../domain/login/login.service';
 
 @Component({
   selector: 'app-topbar',
@@ -32,7 +33,8 @@ export class TopbarComponent {
   envName = environment.environment;
 
   constructor(public loadingController: LoadingControllerService,
-    public topbarService: TopbarService
+    public topbarService: TopbarService,
+    public loginService: LoginService
   ) {    
   }
 }
