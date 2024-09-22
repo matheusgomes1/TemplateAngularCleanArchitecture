@@ -5,8 +5,8 @@ Este projeto consiste em uma aplicação de exemplo, utilizando bons padrões de
 * Standalone Components (The Angular team recommends using standalone components for all new development.)
 * Signals
 * Reactive Forms
-* Angular Material
-
+* Componentes do Angular Material
+* Lazy Loading
 
 ## Fake Backend com json-server
 

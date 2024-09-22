@@ -16,8 +16,16 @@ export class ProdutoService {
     return this.httpClient.get<ListResponse<Produto>>(`${this.API_URL}${this.ENDPOINT}?_page=${page}&_per_page=${perPage}`);
   }
 
+  public getById(id: string): Observable<Produto[]> {
+    return this.httpClient.get<Produto[]>(`${this.API_URL}${this.ENDPOINT}?id=${id}`);
+  }
+
   public post(produto: Produto): Observable<Produto> {
     return this.httpClient.post<Produto>(`${this.API_URL}${this.ENDPOINT}`, produto);
+  }
+
+  public put(produto: Produto): Observable<Produto> {
+    return this.httpClient.put<Produto>(`${this.API_URL}${this.ENDPOINT}/${produto.id}`, produto);
   }
 
   public delete(id: string) {

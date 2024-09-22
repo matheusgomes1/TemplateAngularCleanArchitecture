@@ -58,7 +58,7 @@ export class ListagemProdutoComponent implements OnInit {
   }
 
   cadastrar() {
-    this.router.navigate(['produto/cadastro']);
+    this.router.navigate(['produto/cadastro', '']);
   }
 
   alterarPagina(pageEvent: PageEvent) {
@@ -70,12 +70,12 @@ export class ListagemProdutoComponent implements OnInit {
     });
   }
 
-  editar(e: any) {
-    console.log(e);
+  editar(produto: Produto) {
+    this.router.navigate(['/produto/cadastro', produto.id])
   }
 
-  detalhar(e: any) {
-    console.log(e);
+  detalhar(produto: Produto) {
+    console.log(produto);
   }
 
   deletar(produto: Produto) {

@@ -42,8 +42,9 @@ export class LoginService {
     return true;
   }
 
-  public clearToken(): void {
+  public logout(): void {
     localStorage.removeItem('token');
     this.loggedInUser.set(null);
+    this.router.navigate(['login']);
   }
 }

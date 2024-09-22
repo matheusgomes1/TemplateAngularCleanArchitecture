@@ -20,7 +20,7 @@ export const domainRoutes: Routes = [
       canActivate: [authGuard]
     },
     { 
-      path: "produto/cadastro", 
+      path: "produto/cadastro/:id", 
       loadComponent: () => import('./produto/cadastro-produto/cadastro-produto.component')
                             .then(mod => mod.CadastroProdutoComponent),
       data: {

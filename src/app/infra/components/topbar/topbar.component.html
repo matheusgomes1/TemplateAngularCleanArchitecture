@@ -8,7 +8,7 @@
     Template app ({{envName}})
   </div>
   <div class="d-flex justify-content-end">
-    <button mat-icon-button aria-label="Icone account" class="profile-button">
+    <button mat-icon-button aria-label="Icone account" class="profile-button" [matMenuTriggerFor]="menuProfile">
       <mat-icon *ngIf="loginService.loggedInUser() == null">account_circle</mat-icon>
       <img  *ngIf="loginService.loggedInUser() != null" [src]="loginService.loggedInUser()?.foto"   
                                                              alt="Perfil">
@@ -26,3 +26,10 @@
     }
   </mat-chip-set>
 </div>
+
+<mat-menu #menuProfile="matMenu">
+  <button class="button-profile" mat-menu-item (click)="loginService.logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>
