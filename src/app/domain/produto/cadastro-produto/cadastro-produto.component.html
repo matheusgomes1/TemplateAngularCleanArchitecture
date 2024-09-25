@@ -32,6 +32,17 @@
               </mat-form-field>
             </div>
           </div>
+          @if (this.produto) {
+            <div class="row">
+              <div class="col-md-6">
+                <single-file-upload 
+                  [fileUploaded]="arquivoDoProduto"
+                  mimeTypeAccepted="application/pdf,image/jpeg,image/png"
+                  [uploadFunction]="uploadArquivo.bind(this)"
+                  [deleteFunction]="deleteArquivo.bind(this)"></single-file-upload>
+              </div>
+            </div>
+          }
         </div>
       
         <div class="d-flex justify-content-end">

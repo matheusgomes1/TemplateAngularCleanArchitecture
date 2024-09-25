@@ -13,11 +13,13 @@ import { ProdutoService } from '../services/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from '../models/produto.model';
 import { firstValueFrom } from 'rxjs';
+import { SingleFileUpload, SingleFileUploadComponent } from '../../../infra/components/single-file-upload/single-file-upload.component';
+import { ArquivoService } from '../../arquivo/arquivo.service';
 
 @Component({
   selector: 'app-cadastro-produto',
   standalone: true,
-  providers: [ProdutoService],
+  providers: [ProdutoService, ArquivoService],
   imports: [ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -25,7 +27,9 @@ import { firstValueFrom } from 'rxjs';
     MatDatepickerModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule],
+    MatCardModule,
+    SingleFileUploadComponent
+  ],
   templateUrl: './cadastro-produto.component.html',
   styleUrl: './cadastro-produto.component.scss'
 })
@@ -33,12 +37,14 @@ export class CadastroProdutoComponent implements OnInit {
   form: FormGroup;
   idProduto: string;
   produto: Produto;
+  arquivoDoProduto: SingleFileUpload;
 
   constructor(private topbarService: TopbarService,
     private notificationService: NotificationService,
     private produtoService: ProdutoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private arquivoService: ArquivoService
   ) {
   }
 
@@ -49,6 +55,11 @@ export class CadastroProdutoComponent implements OnInit {
     if (this.idProduto) {
       const lista1Produto = await firstValueFrom(this.produtoService.getById(this.idProduto));
       this.produto = lista1Produto.length > 0 ? lista1Produto[0] : new Produto();
+
+      const listaArquivos = await firstValueFrom(this.arquivoService.getByProdutoId(this.idProduto));
+      const arquivo = listaArquivos[0];
+      if (arquivo)
+        this.arquivoDoProduto = {base64: arquivo.base64, mimeType: arquivo.mimeType, name: arquivo.name, id: arquivo.id};
     }
 
     this.form = new FormGroup({
@@ -87,5 +98,21 @@ export class CadastroProdutoComponent implements OnInit {
     this.produto.dataInclusao = this.form.controls['dataInclusao'].value;
 
     return this.produto;
+  }
+
+  async uploadArquivo(fileUploaded: SingleFileUpload): Promise<string> {
+    const arquivo = await firstValueFrom(this.arquivoService.post({
+      produtoId: this.produto?.id ?? '',
+      base64: fileUploaded.base64,
+      mimeType: fileUploaded.mimeType,
+      name: fileUploaded.name
+    }));
+
+    return arquivo.id ?? '';
+  }
+
+  async deleteArquivo(fileUploaded: SingleFileUpload): Promise<string> {
+    const arquivo = await firstValueFrom(this.arquivoService.delete(fileUploaded.id ?? ''));
+    return arquivo?.id ?? '';
   }
 }
