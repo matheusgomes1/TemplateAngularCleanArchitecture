@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   environment: 'prod',
-  apiUrl: 'http://localhost:3000/',
+  apiUrl: 'https://fakebackendtemplateangular-acegaph3cdadhtba.canadacentral-01.azurewebsites.net/',
 }
