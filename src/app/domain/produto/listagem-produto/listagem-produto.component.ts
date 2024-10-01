@@ -51,9 +51,9 @@ export class ListagemProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.setBackRoute(null);
 
-    this.produtoService.get(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
-      this.produtos = resp.data;
-      this.itemsCount = resp.items;
+    this.produtoService.get(this.pageIndex, this.pageSize).subscribe((resp) => {
+      this.produtos = resp.content;
+      this.itemsCount = resp.totalElements;
     });
   }
 
@@ -65,13 +65,13 @@ export class ListagemProdutoComponent implements OnInit {
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
 
-    this.produtoService.get(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
-      this.produtos = resp.data;
+    this.produtoService.get(this.pageIndex, this.pageSize).subscribe((resp) => {
+      this.produtos = resp.content;
     });
   }
 
   editar(produto: Produto) {
-    this.router.navigate(['/produto/edicao', produto.id])
+    this.router.navigate(['/produto/edicao', produto.produtoId])
   }
 
   detalhar(produto: Produto) {
@@ -83,18 +83,18 @@ export class ListagemProdutoComponent implements OnInit {
       data: {
         labelRefuse: 'Não',
         labelConfirm: 'Sim',
-        message: `Tem certeza que deseja excluir o produto ${produto.id}`,
+        message: `Tem certeza que deseja excluir o produto ${produto.produtoId}`,
         title: 'Confirmação'
       }
     });
 
     dialogRef.afterClosed().subscribe(confirm => {
       if(confirm) {
-        this.produtoService.delete(produto.id ?? '').subscribe((result) => {
+        this.produtoService.delete(produto.produtoId ?? '').subscribe((result) => {
           this.notificationService.showSuccess('Excluído com sucesso.', '');
 
-          this.produtoService.get(this.pageIndex + 1, this.pageSize).subscribe((resp) => {
-            this.produtos = resp.data;
+          this.produtoService.get(this.pageIndex, this.pageSize).subscribe((resp) => {
+            this.produtos = resp.content;
           });
         });
       }

@@ -5,8 +5,7 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
   const token = localStorage.getItem('token');
 
   const reqWithHeader = req.clone({
-    //TODO: para um backend real, descomentar essa linha
-    //headers: req.headers.set('Authorization', `${token}`),
+    headers: req.headers.set('Authorization', `Bearer ${token}`),
   });
 
   return next(reqWithHeader);

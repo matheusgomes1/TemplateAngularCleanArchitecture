@@ -29,7 +29,7 @@
 
   <ng-container matColumnDef="dataInclusao">
     <th mat-header-cell *matHeaderCellDef> Data Inclusão </th>
-    <td mat-cell *matCellDef="let element"> {{element.dataInclusao.replace('Z', '') | date:'dd/MM/yyyy'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.dataInclusao | date:'dd/MM/yyyy'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="acoes">

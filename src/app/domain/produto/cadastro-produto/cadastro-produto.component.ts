@@ -35,7 +35,7 @@ import { ArquivoService } from '../../arquivo/arquivo.service';
 })
 export class CadastroProdutoComponent implements OnInit {
   form: FormGroup;
-  idProduto: string;
+  idProduto: number;
   produto: Produto;
   arquivoDoProduto: SingleFileUpload;
 
@@ -76,13 +76,13 @@ export class CadastroProdutoComponent implements OnInit {
 
     if (this.idProduto) {
       this.produtoService.put(this.formControlToProduto()).subscribe((produto) => {
-        this.notificationService.showSuccess('Produto atualizado!', `Produto ${produto.id} - ${produto.nome}`); 
+        this.notificationService.showSuccess('Produto atualizado!', `Produto ${produto.produtoId} - ${produto.nome}`); 
         this.router.navigate(['produto/listagem']);
       })
     } else {
       this.produtoService.post(this.form.value).subscribe(
         (produto) => { 
-          this.notificationService.showSuccess('Produto cadastrado!', `Produto ${produto.id} - ${produto.nome}`); 
+          this.notificationService.showSuccess('Produto cadastrado!', `Produto ${produto.produtoId} - ${produto.nome}`); 
           this.router.navigate(['produto/listagem']);
         }
       );
@@ -102,7 +102,7 @@ export class CadastroProdutoComponent implements OnInit {
 
   async uploadArquivo(fileUploaded: SingleFileUpload): Promise<string> {
     const arquivo = await firstValueFrom(this.arquivoService.post({
-      produtoId: this.produto?.id ?? '',
+      produtoId: this.produto?.produtoId ?? '',
       base64: fileUploaded.base64,
       mimeType: fileUploaded.mimeType,
       name: fileUploaded.name

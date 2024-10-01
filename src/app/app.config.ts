@@ -8,6 +8,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './infra/interceptors/auth.interceptor';
 import { progressBarInterceptor } from './infra/interceptors/progress-bar.interceptor';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { errorResponseInterceptor } from './infra/interceptors/error-response.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideAnimationsAsync(),
     provideHttpClient(
-      withInterceptors([authInterceptor, progressBarInterceptor])
+      withInterceptors([authInterceptor, progressBarInterceptor, errorResponseInterceptor])
     ),
     provideMomentDateAdapter({
         parse: {
