@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { LoadingControllerService } from '../../infra/services/loading-controller.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,9 @@ import { Router } from '@angular/router';
     MatInputModule, 
     MatButtonModule, 
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressBarModule,
+    CommonModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -29,6 +34,7 @@ export class LoginComponent implements OnInit{
 
   private loginService = inject(LoginService);
   private router = inject(Router);
+  loadingController = inject(LoadingControllerService);
   
   ngOnInit(): void {
     this.form = new FormGroup({
