@@ -16,8 +16,8 @@ export class ProdutoService {
     return this.httpClient.get<ListResponse<Produto>>(`${this.API_URL}${this.ENDPOINT}/listar?pagina=${page}&tamanhoPagina=${perPage}`);
   }
 
-  public getById(id: number): Observable<Produto[]> {
-    return this.httpClient.get<Produto[]>(`${this.API_URL}${this.ENDPOINT}/obter/${id}`);
+  public getById(id: number): Observable<Produto> {
+    return this.httpClient.get<Produto>(`${this.API_URL}${this.ENDPOINT}/obter/${id}`);
   }
 
   public post(produto: Produto): Observable<Produto> {

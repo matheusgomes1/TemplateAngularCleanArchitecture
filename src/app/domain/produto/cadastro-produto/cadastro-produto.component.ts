@@ -53,13 +53,12 @@ export class CadastroProdutoComponent implements OnInit {
     this.idProduto = this.activatedRoute.snapshot.params['id'];
 
     if (this.idProduto) {
-      const lista1Produto = await firstValueFrom(this.produtoService.getById(this.idProduto));
-      this.produto = lista1Produto.length > 0 ? lista1Produto[0] : new Produto();
+      this.produto = await firstValueFrom(this.produtoService.getById(this.idProduto));
 
       const listaArquivos = await firstValueFrom(this.arquivoService.getByProdutoId(this.idProduto));
       const arquivo = listaArquivos[0];
       if (arquivo)
-        this.arquivoDoProduto = {base64: arquivo.base64, mimeType: arquivo.mimeType, name: arquivo.name, id: arquivo.id};
+        this.arquivoDoProduto = {base64: arquivo.base64, mimeType: arquivo.mimeType, name: arquivo.name, id: arquivo.arquivoId};
     }
 
     this.form = new FormGroup({
@@ -108,11 +107,11 @@ export class CadastroProdutoComponent implements OnInit {
       name: fileUploaded.name
     }));
 
-    return arquivo.id ?? '';
+    return arquivo.arquivoId ?? '';
   }
 
   async deleteArquivo(fileUploaded: SingleFileUpload): Promise<string> {
-    const arquivo = await firstValueFrom(this.arquivoService.delete(fileUploaded.id ?? ''));
-    return arquivo?.id ?? '';
+    const id = await firstValueFrom(this.arquivoService.delete(fileUploaded.id ?? ''));
+    return id.toString();
   }
 }

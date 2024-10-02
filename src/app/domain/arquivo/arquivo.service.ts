@@ -6,24 +6,20 @@ import { Arquivo } from './models/arquivo.model';
 
 @Injectable()
 export class ArquivoService {
-  private ENDPOINT = 'arquivos';
+  private ENDPOINT = 'arquivo';
   private API_URL = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
 
-  public getById(id: string): Observable<Arquivo[]> {
-    return this.httpClient.get<Arquivo[]>(`${this.API_URL}${this.ENDPOINT}?id=${id}`);
-  }
-
   public post(arquivo: Arquivo): Observable<Arquivo> {
-    return this.httpClient.post<Arquivo>(`${this.API_URL}${this.ENDPOINT}`, arquivo);
+    return this.httpClient.post<Arquivo>(`${this.API_URL}${this.ENDPOINT}/cadastrar`, arquivo);
   }
 
   public delete(id: string) {
-    return this.httpClient.delete<Arquivo>(`${this.API_URL}${this.ENDPOINT}/${id}`);
+    return this.httpClient.delete<number>(`${this.API_URL}${this.ENDPOINT}/deletar/${id}`);
   }
 
   public getByProdutoId(produtoId: number): Observable<Arquivo[]> {
-    return this.httpClient.get<Arquivo[]>(`${this.API_URL}${this.ENDPOINT}?produtoId=${produtoId}`);
+    return this.httpClient.get<Arquivo[]>(`${this.API_URL}${this.ENDPOINT}/obterPorProduto/${produtoId}`);
   }
 }
