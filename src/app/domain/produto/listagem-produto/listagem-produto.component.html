@@ -10,8 +10,8 @@
   <mat-icon>add</mat-icon>
 </button>
 
-<div class="d-flex container-tabela">
-  <table class="mat-elevation-z8" mat-table [dataSource]="produtos">
+<div class="d-flex container-tabela mat-elevation-z3">
+  <table mat-table [dataSource]="produtos">
 
     <ng-container matColumnDef="nome" sticky>
       <th mat-header-cell *matHeaderCellDef> Nome </th>
@@ -30,7 +30,7 @@
 
     <ng-container matColumnDef="dataInclusao">
       <th mat-header-cell *matHeaderCellDef> Data Inclusão </th>
-      <td mat-cell *matCellDef="let element"> {{element.dataInclusao | date:'dd/MM/yyyy'}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.dataInclusao.split('T')[0] | date:'dd/MM/yyyy'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="acoes" stickyEnd>
