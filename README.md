@@ -8,19 +8,15 @@ Este projeto consiste em uma aplicação de exemplo, utilizando bons padrões de
 * Componentes do Angular Material
 * Lazy Loading
 
-## Fake Backend com json-server
+## Aplicação de demonstração
 
-Como o propósito do projeto é apenas um template, utiliza-se o json-server para simular o backend para que possamos utilizar as chamadas http.
+https://proud-meadow-039c7520f.5.azurestaticapps.net/login
 
-### Configurando o serviço json-server
+Para acessar a aplicação basta colocar qualquer usuário e senha, uma vez que o backend é apenas para demonstração.
 
-```shell
-# Instale globalmente o json-server
-npm install -g json-server
-```
+## Próximas features
 
-Na raíz do projeto existe o arquivo db.json que contém o "banco de dados", para subir o servidor basta executar:
-
-```shell
-npx json-server db.json
-```
+* Filtros na tela de listagem
+* Componentes de Select e MultiSelect
+* Componentes com máscara, como CEP, CNPJ, CPF, etc.
+* Autocomplete com Lazy Loading
