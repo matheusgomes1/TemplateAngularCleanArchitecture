@@ -75,13 +75,13 @@ export class CadastroProdutoComponent implements OnInit {
 
     if (this.idProduto) {
       this.produtoService.put(this.formControlToProduto()).subscribe((produto) => {
-        this.notificationService.showSuccess('Produto atualizado!', `Produto ${produto.produtoId} - ${produto.nome}`); 
+        this.notificationService.showSuccess('Produto atualizado!', `Identificador: ${produto.produtoId} - ${produto.nome}`); 
         this.router.navigate(['produto/listagem']);
       })
     } else {
       this.produtoService.post(this.form.value).subscribe(
         (produto) => { 
-          this.notificationService.showSuccess('Produto cadastrado!', `Produto ${produto.produtoId} - ${produto.nome}`); 
+          this.notificationService.showSuccess('Produto cadastrado!', `Identificador: ${produto.produtoId} - ${produto.nome}`); 
           this.router.navigate(['produto/listagem']);
         }
       );

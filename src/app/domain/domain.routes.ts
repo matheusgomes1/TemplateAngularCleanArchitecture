@@ -28,8 +28,8 @@ export const domainRoutes: Routes = [
         label: 'Listagem de Produtos',
         route: 'produto/listagem'
       }, {
-        label: 'Cadastro de Produtos',
-        route: 'produto/cadastro'
+        label: 'Edição de Produto',
+        route: 'produto/edicao'
       }]
     },
     resolve: { data: BreadcrumbResolver },
@@ -45,7 +45,7 @@ export const domainRoutes: Routes = [
         label: 'Listagem de Produtos',
         route: 'produto/listagem'
       }, {
-        label: 'Cadastro de Produtos',
+        label: 'Cadastro de Produto',
         route: 'produto/cadastro'
       }]
     },
