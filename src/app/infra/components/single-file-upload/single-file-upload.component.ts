@@ -43,6 +43,7 @@ export class SingleFileUploadComponent {
   @Input() deleteFunction: DeleteFunction;
   @Input() downloadFunction: DownloadFunction;
   @Input() fileUploaded: SingleFileUpload | null;
+  @Input() maxFileSizeMB: number =  4;
 
   @Output() base64Uploaded: EventEmitter<string> = new EventEmitter<string>();
   @Output() deletedFile: EventEmitter<string> = new EventEmitter<string>();
@@ -59,6 +60,8 @@ export class SingleFileUploadComponent {
 
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
+    if (this.validarTamanhoArquivo(selectedFile) === false)
+      return;
     const reader = new FileReader();
     this.loading = true;
     console.log(selectedFile);
@@ -115,5 +118,16 @@ export class SingleFileUploadComponent {
     this.loading = false;
     this.fileUploaded = null;
     this.fileInput.nativeElement.value = null;
+  }
+
+  validarTamanhoArquivo(file: any): boolean {
+    if (file == null) return true;
+
+    if (file.size > this.maxFileSizeMB * 1024 * 1024) {
+      this.notificationService.showError('Tamanho de arquivo excedido.', `Tamanho máximo de ${this.maxFileSizeMB}MB`);
+      return false;
+    }
+
+    return true;
   }
 }

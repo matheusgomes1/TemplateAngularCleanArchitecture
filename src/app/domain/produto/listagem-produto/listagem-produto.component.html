@@ -10,51 +10,55 @@
   <mat-icon>add</mat-icon>
 </button>
 
-<table  class="mat-elevation-z8" mat-table [dataSource]="produtos">
+<div class="d-flex container-tabela">
+  <table class="mat-elevation-z8" mat-table [dataSource]="produtos">
 
-  <ng-container matColumnDef="nome">
-    <th mat-header-cell *matHeaderCellDef> Nome </th>
-    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-  </ng-container>
+    <ng-container matColumnDef="nome" sticky>
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="descricao">
-    <th mat-header-cell *matHeaderCellDef> Descrição </th>
-    <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
-  </ng-container>
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="valor">
-    <th mat-header-cell *matHeaderCellDef> Valor </th>
-    <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
-  </ng-container>
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef> Valor </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="dataInclusao">
-    <th mat-header-cell *matHeaderCellDef> Data Inclusão </th>
-    <td mat-cell *matCellDef="let element"> {{element.dataInclusao | date:'dd/MM/yyyy'}} </td>
-  </ng-container>
+    <ng-container matColumnDef="dataInclusao">
+      <th mat-header-cell *matHeaderCellDef> Data Inclusão </th>
+      <td mat-cell *matCellDef="let element"> {{element.dataInclusao | date:'dd/MM/yyyy'}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="acoes">
-    <th mat-header-cell *matHeaderCellDef> Ações </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="editar(element)">
-          <mat-icon>edit</mat-icon>
-          <span>Editar</span>
+    <ng-container matColumnDef="acoes" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
         </button>
-        <button mat-menu-item (click)="deletar(element)">
-          <mat-icon>delete</mat-icon>
-          <span>Excluir</span>
-        </button>
-      </mat-menu>
-    </td>
-  </ng-container>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editar(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="deletar(element)">
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
 
-<mat-paginator class="mat-elevation-z3" #paginator (page)="alterarPagina($event)" [length]="itemsCount" [pageSize]="pageSize"
-  [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" aria-label="Select page">
-</mat-paginator>
+<div class="d-flex mat-elevation-z3">
+  <mat-paginator class="w-100" #paginator (page)="alterarPagina($event)" [length]="itemsCount" [pageSize]="pageSize"
+    [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" aria-label="Select page">
+  </mat-paginator>
+</div>
