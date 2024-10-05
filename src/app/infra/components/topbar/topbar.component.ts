@@ -32,7 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
 export class TopbarComponent {
   @Input() matDrawer: MatDrawer;
 
-  envName = environment.environment;
+  envName = environment.production ? '' : `(${environment.environment})`;
 
   constructor(public loadingController: LoadingControllerService,
     public topbarService: TopbarService,
