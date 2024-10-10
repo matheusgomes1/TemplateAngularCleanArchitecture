@@ -57,3 +57,8 @@
     color: #01853c;
   }
 }
+
+body {
+  --mdc-snackbar-container-color: none; /* Resets to default */
+  --mdc-snackbar-supporting-text-color: none;
+}

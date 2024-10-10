@@ -4,10 +4,10 @@
     aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <div class="d-flex flex-grow-1 justify-content-center">
+  <div class="flex grow justify-center">
     Template app {{envName}}
   </div>
-  <div class="d-flex justify-content-end">
+  <div class="flex justify-end">
     <button mat-icon-button aria-label="Icone account" class="profile-button" [matMenuTriggerFor]="menuProfile">
       <mat-icon *ngIf="loginService.loggedInUser() == null">account_circle</mat-icon>
       <img  *ngIf="loginService.loggedInUser() != null" [src]="loginService.loggedInUser()?.foto"   
@@ -15,7 +15,7 @@
     </button>
   </div>
 </mat-toolbar>
-<div class="d-flex secondy-row-color">
+<div class="flex secondy-row-color">
   <button mat-icon-button class="ms-3" *ngIf="topbarService.backRoute()" (click)="topbarService.backButtonNavigate()" aria-label="Botão para retornar para a tela anterior">
     <mat-icon>arrow_back</mat-icon>
   </button>

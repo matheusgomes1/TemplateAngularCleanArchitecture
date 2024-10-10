@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @include mat.core();
 
@@ -41,10 +44,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 
-  --mdc-snackbar-container-color: none; /* Resets to default */
-  --mdc-snackbar-supporting-text-color: none;
-  --mat-form-field-container-vertical-padding: 10px;
-  --mat-form-field-container-height: 44px;
   --mat-app-background-color: #edecec70;
 }
 
@@ -52,6 +51,6 @@ body {
   max-width: 213px;
 }
 
-@import "bootstrap/scss/bootstrap";
 @import "../src/app/infra/styles/mat-paginador-custom";
 @import "../src/app/infra/styles/snack-bar-custom";
+@import "../src/app/infra/styles/mat-form-field-custom";
