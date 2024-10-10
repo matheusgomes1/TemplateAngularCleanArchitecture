@@ -13,12 +13,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { NotificationService } from '../../../infra/services/notification.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogCustomComponent, CustomDialogData } from '../../../infra/components/confirm-dialog-custom/confirm-dialog-custom.component';
+import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
+import { ProdutoFiltroService } from '../services/produto-filtro.service';
 
 @Component({
   selector: 'app-listagem-produto',
   standalone: true,
   imports: [
     MatTableModule, 
+    MatSortModule,
     MatButtonModule, 
     MatIconModule, 
     DatePipe, 
@@ -26,7 +29,7 @@ import { ConfirmDialogCustomComponent, CustomDialogData } from '../../../infra/c
     MatMenuModule,
     MatDialogModule
   ],
-  providers: [ProdutoService],
+  providers: [ProdutoService, ProdutoFiltroService],
   templateUrl: './listagem-produto.component.html',
   styleUrl: './listagem-produto.component.scss'
 })
@@ -38,11 +41,12 @@ export class ListagemProdutoComponent implements OnInit {
   pageSizeOptions = [5, 10, 25];
   pageIndex: number = 0;
 
-  constructor(private loadingController: LoadingControllerService, 
+  constructor(
     private router: Router, 
     private produtoService: ProdutoService,
     private topbarService: TopbarService,
     private notificationService: NotificationService,
+    private filtroService: ProdutoFiltroService,
     private dialog: MatDialog
   ) {
     
@@ -51,7 +55,8 @@ export class ListagemProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.setBackRoute(null);
 
-    this.produtoService.get(this.pageIndex, this.pageSize).subscribe((resp) => {
+    this.filtroService.setFiltro(this.pageIndex, this.pageSize);
+    this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
       this.produtos = resp.content;
       this.itemsCount = resp.totalElements;
     });
@@ -65,7 +70,8 @@ export class ListagemProdutoComponent implements OnInit {
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
 
-    this.produtoService.get(this.pageIndex, this.pageSize).subscribe((resp) => {
+    this.filtroService.setPagina(this.pageIndex, this.pageSize);
+    this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
       this.produtos = resp.content;
     });
   }
@@ -92,12 +98,22 @@ export class ListagemProdutoComponent implements OnInit {
       if(confirm) {
         this.produtoService.delete(produto.produtoId ?? '').subscribe((result) => {
           this.notificationService.showSuccess('Excluído com sucesso.', '');
-
-          this.produtoService.get(this.pageIndex, this.pageSize).subscribe((resp) => {
+          
+          this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
             this.produtos = resp.content;
           });
         });
       }
+    });
+  }
+
+  ordenarPor(sortEvent: Sort) {
+    this.filtroService.setOrdenacao(
+      (sortEvent.direction == '') ? 'produtoId' : sortEvent.active, 
+      (sortEvent.direction == 'desc') ? true : false);
+    
+    this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
+      this.produtos = resp.content;
     });
   }
 }

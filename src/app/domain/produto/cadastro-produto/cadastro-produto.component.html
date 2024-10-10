@@ -31,6 +31,15 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
+            @if (this.produto) {
+              <div>
+                <single-file-upload 
+                  [fileUploaded]="arquivoDoProduto"
+                  mimeTypeAccepted="application/pdf,image/jpeg,image/png"
+                  [uploadFunction]="uploadArquivo.bind(this)"
+                  [deleteFunction]="deleteArquivo.bind(this)"></single-file-upload>
+              </div>
+            }
           </div>
         </div>
       
