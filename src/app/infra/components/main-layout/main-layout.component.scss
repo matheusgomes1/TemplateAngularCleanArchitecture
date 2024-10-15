@@ -9,8 +9,12 @@ mat-drawer-container {
 
 @media screen and (max-width: 500px) {
   .padding-main-content {
-      margin-left: 1rem;
-      margin-right: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .menu-width {
+    max-width: 280px;
   }
 }
 

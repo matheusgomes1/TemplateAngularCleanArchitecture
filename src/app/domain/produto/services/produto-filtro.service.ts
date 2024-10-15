@@ -3,7 +3,7 @@ import { ProdutoFiltro } from "../models/produto-filtro.model";
 
 @Injectable()
 export class ProdutoFiltroService {
-  private filtroProduto: ProdutoFiltro;
+  public filtroProduto: ProdutoFiltro;
 
   constructor() { }
 
@@ -12,7 +12,8 @@ export class ProdutoFiltroService {
     tamanhoPagina: number, 
     ordenadoPor: string | undefined = 'produtoId', 
     decrescente: boolean = false,
-    nome: string | undefined = '') {
+    nome: string = '',
+    descricao: string = '') {
       if (!this.filtroProduto)
         this.filtroProduto = {};
 
@@ -21,6 +22,7 @@ export class ProdutoFiltroService {
       this.filtroProduto.ordenadoPor = ordenadoPor;
       this.filtroProduto.decrescente = decrescente;
       this.filtroProduto.nome = nome;
+      this.filtroProduto.descricao = descricao;
   }
 
   setPagina(pagina: number, tamanhoPagina: number) {
@@ -34,6 +36,18 @@ export class ProdutoFiltroService {
 
     this.filtroProduto.ordenadoPor = ordenadoPor;
     this.filtroProduto.decrescente = decrescente;
+  }
+
+  setNome(nome: string) {
+    if(!this.filtroProduto) return;
+
+    this.filtroProduto.nome = nome;
+  }
+
+  setDescricao(descricao: string) {
+    if(!this.filtroProduto) return;
+
+    this.filtroProduto.descricao = descricao;
   }
 
   get(): ProdutoFiltro {

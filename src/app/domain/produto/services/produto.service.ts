@@ -15,7 +15,13 @@ export class ProdutoService {
 
   public get(filtro: ProdutoFiltro): Observable<ListResponse<Produto>> {
     return this.httpClient.get<ListResponse<Produto>>(
-      `${this.API_URL}${this.ENDPOINT}/listar?pagina=${filtro.pagina}&tamanhoPagina=${filtro.tamanhoPagina}&ordenadoPor=${filtro.ordenadoPor}&decrescente=${filtro.decrescente ? 'true' : 'false'}`);
+      `${this.API_URL}${this.ENDPOINT}/listar?
+pagina=${filtro.pagina}&
+tamanhoPagina=${filtro.tamanhoPagina}&
+ordenadoPor=${filtro.ordenadoPor}&
+decrescente=${filtro.decrescente ? 'true' : 'false'}&
+nome=${filtro.nome}&
+descricao=${filtro.descricao}`);
   }
 
   public getById(id: number): Observable<Produto> {

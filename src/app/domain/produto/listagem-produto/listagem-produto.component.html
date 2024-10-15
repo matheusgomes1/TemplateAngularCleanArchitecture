@@ -13,12 +13,12 @@
 </div>
 
 <div class="flex mb-2">
-  <mat-expansion-panel class="w-full">
+  <mat-expansion-panel class="w-full" #expansionPanel>
     <mat-expansion-panel-header>
       <mat-panel-title> Filtros <mat-icon>filter_alt</mat-icon></mat-panel-title>
     </mat-expansion-panel-header>
 
-    <app-filtro-produto></app-filtro-produto>
+    <app-filtro-produto (filtrarEvt)="consultarFiltrado()"></app-filtro-produto>
   </mat-expansion-panel>
 </div>
 
@@ -70,7 +70,7 @@
 </div>
 
 <div class="flex mat-elevation-z3">
-  <mat-paginator class="w-full" #paginator (page)="alterarPagina($event)" [length]="itemsCount" [pageSize]="pageSize"
-    [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" aria-label="Select page">
+  <mat-paginator class="w-full" #paginator (page)="alterarPagina($event)" [length]="itemsCount" [pageSize]="filtroService.filtroProduto.tamanhoPagina"
+    [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [pageIndex]="filtroService.filtroProduto.pagina" aria-label="Select page">
   </mat-paginator>
 </div>

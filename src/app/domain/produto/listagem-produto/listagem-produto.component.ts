@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Produto } from '../models/produto.model';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
@@ -16,7 +16,7 @@ import { ConfirmDialogCustomComponent, CustomDialogData } from '../../../infra/c
 import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
 import { ProdutoFiltroService } from '../services/produto-filtro.service';
 import { FiltroProdutoComponent } from '../filtro-produto/filtro-produto.component';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-listagem-produto',
@@ -40,17 +40,17 @@ import { MatExpansionModule } from '@angular/material/expansion';
 export class ListagemProdutoComponent implements OnInit {
   produtos: Produto[];
   displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao', 'acoes'];
-  pageSize: number = 5;
-  itemsCount: number;
   pageSizeOptions = [5, 10, 25];
-  pageIndex: number = 0;
+  itemsCount: number = 0;
+
+  @ViewChild('expansionPanel') expasionPanel: MatExpansionPanel;
 
   constructor(
     private router: Router,
     private produtoService: ProdutoService,
     private topbarService: TopbarService,
     private notificationService: NotificationService,
-    private filtroService: ProdutoFiltroService,
+    public filtroService: ProdutoFiltroService,
     private dialog: MatDialog
   ) {
 
@@ -59,11 +59,8 @@ export class ListagemProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.setBackRoute(null);
 
-    this.filtroService.setFiltro(this.pageIndex, this.pageSize);
-    this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
-      this.produtos = resp.content;
-      this.itemsCount = resp.totalElements;
-    });
+    this.filtroService.setFiltro(0, 5);
+    this.consultarFiltrado();
   }
 
   cadastrar() {
@@ -71,13 +68,8 @@ export class ListagemProdutoComponent implements OnInit {
   }
 
   alterarPagina(pageEvent: PageEvent) {
-    this.pageIndex = pageEvent.pageIndex;
-    this.pageSize = pageEvent.pageSize;
-
-    this.filtroService.setPagina(this.pageIndex, this.pageSize);
-    this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
-      this.produtos = resp.content;
-    });
+    this.filtroService.setPagina(pageEvent.pageIndex, pageEvent.pageSize);
+    this.consultarFiltrado();
   }
 
   editar(produto: Produto) {
@@ -103,9 +95,7 @@ export class ListagemProdutoComponent implements OnInit {
         this.produtoService.delete(produto.produtoId ?? '').subscribe((result) => {
           this.notificationService.showSuccess('Excluído com sucesso.', '');
 
-          this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
-            this.produtos = resp.content;
-          });
+          this.consultarFiltrado();
         });
       }
     });
@@ -116,8 +106,14 @@ export class ListagemProdutoComponent implements OnInit {
       (sortEvent.direction == '') ? 'produtoId' : sortEvent.active,
       (sortEvent.direction == 'desc') ? true : false);
 
+    this.consultarFiltrado();
+  }
+
+  consultarFiltrado() {
     this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
       this.produtos = resp.content;
+      this.itemsCount = resp.totalElements;
+      this.expasionPanel.close();
     });
   }
 }
