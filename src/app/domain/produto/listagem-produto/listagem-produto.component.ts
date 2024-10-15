@@ -15,19 +15,23 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogCustomComponent, CustomDialogData } from '../../../infra/components/confirm-dialog-custom/confirm-dialog-custom.component';
 import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
 import { ProdutoFiltroService } from '../services/produto-filtro.service';
+import { FiltroProdutoComponent } from '../filtro-produto/filtro-produto.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-listagem-produto',
   standalone: true,
   imports: [
-    MatTableModule, 
+    MatTableModule,
     MatSortModule,
-    MatButtonModule, 
-    MatIconModule, 
-    DatePipe, 
-    MatPaginatorModule, 
+    MatButtonModule,
+    MatIconModule,
+    DatePipe,
+    MatPaginatorModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule,
+    FiltroProdutoComponent
   ],
   providers: [ProdutoService, ProdutoFiltroService],
   templateUrl: './listagem-produto.component.html',
@@ -42,14 +46,14 @@ export class ListagemProdutoComponent implements OnInit {
   pageIndex: number = 0;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private produtoService: ProdutoService,
     private topbarService: TopbarService,
     private notificationService: NotificationService,
     private filtroService: ProdutoFiltroService,
     private dialog: MatDialog
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -98,7 +102,7 @@ export class ListagemProdutoComponent implements OnInit {
       if(confirm) {
         this.produtoService.delete(produto.produtoId ?? '').subscribe((result) => {
           this.notificationService.showSuccess('Excluído com sucesso.', '');
-          
+
           this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
             this.produtos = resp.content;
           });
@@ -109,9 +113,9 @@ export class ListagemProdutoComponent implements OnInit {
 
   ordenarPor(sortEvent: Sort) {
     this.filtroService.setOrdenacao(
-      (sortEvent.direction == '') ? 'produtoId' : sortEvent.active, 
+      (sortEvent.direction == '') ? 'produtoId' : sortEvent.active,
       (sortEvent.direction == 'desc') ? true : false);
-    
+
     this.produtoService.get(this.filtroService.get()).subscribe((resp) => {
       this.produtos = resp.content;
     });

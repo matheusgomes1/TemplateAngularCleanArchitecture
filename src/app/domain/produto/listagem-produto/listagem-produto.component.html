@@ -12,6 +12,16 @@
   </button>
 </div>
 
+<div class="flex mb-2">
+  <mat-expansion-panel class="w-full">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Filtros <mat-icon>filter_alt</mat-icon></mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-filtro-produto></app-filtro-produto>
+  </mat-expansion-panel>
+</div>
+
 <div class="flex container-tabela mat-elevation-z3">
   <table mat-table [dataSource]="produtos" matSort (matSortChange)="ordenarPor($event)">
 

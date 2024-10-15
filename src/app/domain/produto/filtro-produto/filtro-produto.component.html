@@ -1,0 +1,25 @@
+@if (form) {
+  <form [formGroup]="form">
+    <div class="flex flex-wrap gap-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nome">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Descrição</mat-label>
+        <input matInput placeholder="Descrição" formControlName="descricao">
+      </mat-form-field>
+    </div>
+    <div class="flex justify-start">
+      <button type="button" mat-raised-button class="me-1" (click)="filtrar()">
+        <mat-icon>filter_list</mat-icon>
+        Filtrar
+      </button>
+      <button type="button" mat-raised-button class="me-1" (click)="limpar()">
+        <mat-icon>close</mat-icon>
+        Limpar Filtro
+      </button>
+    </div>
+  </form>
+}
