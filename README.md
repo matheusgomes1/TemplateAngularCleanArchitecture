@@ -16,7 +16,6 @@ Para acessar a aplicação basta colocar qualquer usuário e senha, uma vez que 
 
 ## Próximas features
 
-* Filtros na tela de listagem
 * Componentes de Select e MultiSelect
 * Componentes com máscara, como CEP, CNPJ, CPF, etc.
 * Autocomplete com Lazy Loading
