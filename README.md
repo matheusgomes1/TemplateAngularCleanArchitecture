@@ -6,6 +6,7 @@ Este projeto consiste em uma aplicação de exemplo, utilizando bons padrões de
 * Signals
 * Reactive Forms
 * Componentes do Angular Material
+* Layout com classes utilitárias do tailwind
 * Lazy Loading
 
 ## Aplicação de demonstração
