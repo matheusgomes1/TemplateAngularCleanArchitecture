@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { LoadingControllerService } from '../../infra/services/loading-controller.service';
+import { LoadingControllerService } from '../../core/services/loading-controller.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

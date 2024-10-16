@@ -5,10 +5,10 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './infra/interceptors/auth.interceptor';
-import { progressBarInterceptor } from './infra/interceptors/progress-bar.interceptor';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { progressBarInterceptor } from './core/interceptors/progress-bar.interceptor';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { errorResponseInterceptor } from './infra/interceptors/error-response.interceptor';
+import { errorResponseInterceptor } from './core/interceptors/error-response.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -5,15 +5,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { TopbarService } from '../../../infra/services/topbar.service';
+import { TopbarService } from '../../../core/services/topbar.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { NotificationService } from '../../../infra/services/notification.service';
+import { NotificationService } from '../../../core/services/notification.service';
 import { ProdutoService } from '../services/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from '../models/produto.model';
 import { firstValueFrom } from 'rxjs';
-import { SingleFileUpload, SingleFileUploadComponent } from '../../../infra/components/single-file-upload/single-file-upload.component';
+import { SingleFileUpload, SingleFileUploadComponent } from '../../../core/components/single-file-upload/single-file-upload.component';
 import { ArquivoService } from '../../arquivo/arquivo.service';
 
 @Component({

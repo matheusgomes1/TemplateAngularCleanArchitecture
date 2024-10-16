@@ -10,7 +10,7 @@ import { TopbarService } from '../../services/topbar.service';
 import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { LoginService } from '../../../domain/login/login.service';
+import { LoginService } from '../../../feature/login/login.service';
 import { MatMenuModule } from '@angular/material/menu';
 
 @Component({

@@ -1,4 +1,4 @@
-import { FiltroBase } from "../../../infra/models/filtro-base.model";
+import { FiltroBase } from "../../../core/models/filtro-base.model";
 
 export class ProdutoFiltro extends FiltroBase {
   nome?: string;
