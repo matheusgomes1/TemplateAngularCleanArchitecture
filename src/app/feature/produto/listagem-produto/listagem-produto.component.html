@@ -45,6 +45,22 @@
       <td mat-cell *matCellDef="let element"> {{element.dataInclusao.split('T')[0] | date:'dd/MM/yyyy'}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="situacao">
+      <th mat-header-cell *matHeaderCellDef> Situação </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex items-center">
+          @if (element.situacao == 0) {
+            <mat-icon class="text-green-700">check_circle</mat-icon>
+          } @else if (element.situacao == 1) {
+            <mat-icon class="text-red-800">cancel</mat-icon>
+          } @else if (element.situacao == 2) {
+            <mat-icon class="text-yellow-600">help</mat-icon>
+          }
+          {{situacaoToStringMap.get(element.situacao)}} 
+        </div>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="acoes" stickyEnd>
       <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell *matCellDef="let element">

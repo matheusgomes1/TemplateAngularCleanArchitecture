@@ -4,41 +4,54 @@
       <form [formGroup]="form" (ngSubmit)="salvar()">
         <div class="container mx-auto text-center">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <mat-form-field appearance="outline">
-                <mat-label>Nome completo</mat-label>
-                <input matInput placeholder="Nome completo" formControlName="nome">
-              </mat-form-field>
-            </div>
-            <div>
-              <mat-form-field appearance="outline">
-                <mat-label>Descrição</mat-label>
-                <input matInput placeholder="Digite a descrição" formControlName="descricao">
-              </mat-form-field>
-            </div>
-            <div>
-              <mat-form-field appearance="outline">
-                <mat-label>Valor</mat-label>
-                <input matInput type="number" placeholder="0" formControlName="valor" />
-              </mat-form-field>
-            </div>
-            <div>
-              <mat-form-field class="date-picker-custom" appearance="outline">
-                <mat-label>Data Inclusão</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="dataInclusao">
-                <mat-hint>DD/MM/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Nome completo</mat-label>
+              <input matInput placeholder="Nome completo" formControlName="nome">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Descrição</mat-label>
+              <input matInput placeholder="Digite a descrição" formControlName="descricao">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Valor</mat-label>
+              <input matInput type="number" placeholder="0" formControlName="valor" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Data Inclusão</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="dataInclusao">
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Situação</mat-label>
+              <mat-select formControlName="situacao">
+                @for (situacao of situacoes; track situacao) {
+                  <mat-option [value]="situacao.value">
+                    @if (situacao.value == 0) {
+                      <mat-icon class="text-green-700">check_circle</mat-icon>
+                    } @else if (situacao.value == 1) {
+                      <mat-icon class="text-red-800">cancel</mat-icon>
+                    } @else if (situacao.value == 2) {
+                      <mat-icon class="text-yellow-600">help</mat-icon>
+                    }
+                    {{situacao.label}}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
             @if (this.produto) {
-              <div>
-                <single-file-upload 
-                  [fileUploaded]="arquivoDoProduto"
-                  mimeTypeAccepted="application/pdf,image/jpeg,image/png"
-                  [uploadFunction]="uploadArquivo.bind(this)"
-                  [deleteFunction]="deleteArquivo.bind(this)"></single-file-upload>
-              </div>
+              <single-file-upload 
+                [fileUploaded]="arquivoDoProduto"
+                mimeTypeAccepted="application/pdf,image/jpeg,image/png"
+                [uploadFunction]="uploadArquivo.bind(this)"
+                [deleteFunction]="deleteArquivo.bind(this)">
+              </single-file-upload>
             }
           </div>
         </div>

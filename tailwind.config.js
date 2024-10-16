@@ -19,6 +19,10 @@ module.exports = {
         900: '#d7e3ff'
       },
       gray: colors.gray,
+      orange: colors.orange,
+      green: colors.green,
+      yellow: colors.yellow,
+      red: colors.red
     },
     extend: {},
   },

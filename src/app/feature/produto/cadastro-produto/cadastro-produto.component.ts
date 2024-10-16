@@ -15,6 +15,9 @@ import { Produto } from '../models/produto.model';
 import { firstValueFrom } from 'rxjs';
 import { SingleFileUpload, SingleFileUploadComponent } from '../../../core/components/single-file-upload/single-file-upload.component';
 import { ArquivoService } from '../../arquivo/arquivo.service';
+import { SelectOption } from '../../../core/interfaces/select-option.interface';
+import { Situacao, situacaoToStringMap } from '../enums/situacao.enum';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -24,6 +27,7 @@ import { ArquivoService } from '../../arquivo/arquivo.service';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatSelectModule,
     MatDatepickerModule,
     MatButtonModule,
     MatIconModule,
@@ -38,6 +42,21 @@ export class CadastroProdutoComponent implements OnInit {
   idProduto: number;
   produto: Produto;
   arquivoDoProduto: SingleFileUpload;
+
+  situacoes: SelectOption[] = [
+    {
+      value: Situacao.Ativo,
+      label: situacaoToStringMap.get(Situacao.Ativo) ?? ''
+    },
+    {
+      value: Situacao.Inativo,
+      label: situacaoToStringMap.get(Situacao.Inativo) ?? ''
+    },
+    {
+      value: Situacao.Pendente,
+      label: situacaoToStringMap.get(Situacao.Pendente) ?? ''
+    }
+  ]
 
   constructor(private topbarService: TopbarService,
     private notificationService: NotificationService,
@@ -65,7 +84,8 @@ export class CadastroProdutoComponent implements OnInit {
       nome: new FormControl<string | null>(this.produto?.nome, [Validators.required]),
       descricao: new FormControl<string | null>(this.produto?.descricao, [Validators.required]),
       valor: new FormControl<number | null>(this.produto?.valor, [Validators.required]),
-      dataInclusao: new FormControl<Date | string | null>(this.produto?.dataInclusao, [Validators.required])
+      dataInclusao: new FormControl<Date | string | null>(this.produto?.dataInclusao, [Validators.required]),
+      situacao: new FormControl<number | null>(this.produto?.situacao, [Validators.required])
     });
   }
 
@@ -95,7 +115,8 @@ export class CadastroProdutoComponent implements OnInit {
     this.produto.descricao = this.form.controls['descricao'].value;
     this.produto.valor = this.form.controls['valor'].value;
     this.produto.dataInclusao = this.form.controls['dataInclusao'].value;
-
+    this.produto.situacao = this.form.controls['situacao'].value;
+    
     return this.produto;
   }
 

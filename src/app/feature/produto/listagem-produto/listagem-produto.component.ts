@@ -17,6 +17,7 @@ import { MatSortModule, Sort, SortDirection } from '@angular/material/sort';
 import { ProdutoFiltroService } from '../services/produto-filtro.service';
 import { FiltroProdutoComponent } from '../filtro-produto/filtro-produto.component';
 import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
+import { situacaoToStringMap } from '../enums/situacao.enum';
 
 @Component({
   selector: 'app-listagem-produto',
@@ -39,9 +40,10 @@ import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansi
 })
 export class ListagemProdutoComponent implements OnInit {
   produtos: Produto[];
-  displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao', 'acoes'];
+  displayedColumns: string[] = ['nome', 'descricao', 'valor', 'dataInclusao', 'situacao', 'acoes'];
   pageSizeOptions = [5, 10, 25];
   itemsCount: number = 0;
+  situacaoToStringMap = situacaoToStringMap;
 
   @ViewChild('expansionPanel') expasionPanel: MatExpansionPanel;
 
