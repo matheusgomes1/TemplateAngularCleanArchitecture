@@ -5,13 +5,8 @@
         <div class="container mx-auto text-center">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <mat-form-field appearance="outline">
-              <mat-label>Nome completo</mat-label>
-              <input matInput placeholder="Nome completo" formControlName="nome">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Descrição</mat-label>
-              <input matInput placeholder="Digite a descrição" formControlName="descricao">
+              <mat-label>Nome</mat-label>
+              <input matInput placeholder="Nome" formControlName="nome">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -53,6 +48,12 @@
                 [deleteFunction]="deleteArquivo.bind(this)">
               </single-file-upload>
             }
+          </div>
+          <div class="grid grid-cols-1 mt-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Descrição</mat-label>
+              <textarea matInput placeholder="Digite a descrição" formControlName="descricao"></textarea>
+            </mat-form-field>
           </div>
         </div>
       
