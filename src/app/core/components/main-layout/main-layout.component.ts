@@ -29,17 +29,10 @@ import { environment } from '../../../../environments/environment';
 export class MainLayoutComponent implements OnInit {
   latestVersion: string;
 
-  constructor(private httpClient: HttpClient) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    const authHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `token ${environment.accessTokenGithub}` 
-    });
-
-    this.httpClient.get('https://api.github.com/repos/matheusgomes1/TemplateAngularCleanArchitecture/tags', {headers: authHeaders}).subscribe((data: any) => {
-      this.latestVersion = data[0].name;
-    })
+    this.latestVersion = environment.version;
   }
 }
