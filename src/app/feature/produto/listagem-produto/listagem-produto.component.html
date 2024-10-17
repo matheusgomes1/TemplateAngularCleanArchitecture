@@ -85,7 +85,7 @@
   </table>
 </div>
 
-<div class="flex mat-elevation-z3">
+<div class="flex mat-elevation-z3 mb-2">
   <mat-paginator class="w-full" #paginator (page)="alterarPagina($event)" [length]="itemsCount" [pageSize]="filtroService.filtroProduto.tamanhoPagina"
     [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [pageIndex]="filtroService.filtroProduto.pagina" aria-label="Select page">
   </mat-paginator>
