@@ -42,7 +42,7 @@
 
     <ng-container matColumnDef="dataInclusao">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por data inclusão"> Data Inclusão </th>
-      <td mat-cell *matCellDef="let element"> {{element.dataInclusao.split('T')[0] | date:'dd/MM/yyyy'}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.dataInclusao | date:'dd/MM/yyyy'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="situacao">
