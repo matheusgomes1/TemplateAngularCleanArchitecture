@@ -13,7 +13,7 @@ Este projeto consiste em uma aplicação de exemplo, utilizando bons padrões de
 
 https://proud-meadow-039c7520f.5.azurestaticapps.net/login
 
-Para acessar a aplicação basta colocar qualquer usuário e senha, uma vez que o backend é apenas para demonstração.
+Para acessar a aplicação use usuario "admin" e senha "admin".
 
 ## Próximas features
 

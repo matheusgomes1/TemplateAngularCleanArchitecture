@@ -7,7 +7,7 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn):
 
   let reqWithHeader = req;
 
-  if (req.url.includes(environment.apiUrl)) {
+  if (req.url.includes(environment.apiUrl) && !req.url.includes('login')) {
     reqWithHeader = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${token}`),
     });

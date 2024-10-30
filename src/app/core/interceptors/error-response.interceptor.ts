@@ -8,7 +8,7 @@ export function errorResponseInterceptor(req: HttpRequest<unknown>, next: HttpHa
 
   return next(req).pipe(
     catchError((error: any, caught: Observable<HttpEvent<unknown>>) => {
-
+      console.error(error);
       if (error.status == HttpStatusCode.Unauthorized)
         notification.showError('Sem Autorização!', 'Por favor faça o login com o perfil ou permissão necessária.');
       else if (error.status == HttpStatusCode.Forbidden)
