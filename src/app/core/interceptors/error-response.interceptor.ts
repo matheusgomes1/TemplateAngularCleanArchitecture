@@ -11,11 +11,13 @@ export function errorResponseInterceptor(req: HttpRequest<unknown>, next: HttpHa
 
       if (error.status == HttpStatusCode.Unauthorized)
         notification.showError('Sem Autorização!', 'Por favor faça o login com o perfil ou permissão necessária.');
-      if (error.status == HttpStatusCode.BadRequest)
+      else if (error.status == HttpStatusCode.Forbidden)
+        notification.showError('Sem Autorização!', 'Por favor faça o login com o perfil ou permissão necessária.');
+      else if (error.status == HttpStatusCode.BadRequest)
         notification.showError('Erro de domínio!', error.error as string);
-      if (error.status == HttpStatusCode.NotFound)
+      else if (error.status == HttpStatusCode.NotFound)
         notification.showError('Recurso não encontrado!', HttpStatusCode.NotFound.toString());
-      if (error.status == HttpStatusCode.InternalServerError)
+      else if (error.status == HttpStatusCode.InternalServerError)
         notification.showError('Erro no serviço!', 'Por favor, entre em contato com o administrador.');
 
       throw error;

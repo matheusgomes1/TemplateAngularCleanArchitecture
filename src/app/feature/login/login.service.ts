@@ -20,7 +20,6 @@ export class LoginService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   public async autenticar(usuario:string, senha: string): Promise<UserJwtPayload> {
-    //TODO: Aqui é apenas uma chamada GET que sempre retorna um msm token, numa aplicação real, deve-se utilizar uma chamada POST passando o usuário e senha
     const authResponse = (await firstValueFrom(this.httpClient.post<AuthResponse>(`${this.API_URL}${this.ENDPOINT}`, {login: usuario, senha: senha})));
     localStorage.setItem('token', authResponse.token);
 
